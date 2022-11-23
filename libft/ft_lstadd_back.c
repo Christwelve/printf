@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:52:49 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/21 19:44:45 by cmeng            ###   ########.fr       */
+/*   Created: 2022/10/26 10:31:09 by cmeng             #+#    #+#             */
+/*   Updated: 2022/11/03 15:50:14 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+#include "libft.h"
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
 
-#endif
+	if (lst)
+	{
+		if (*lst == NULL)
+			*lst = new;
+		else
+		{
+			tmp = ft_lstlast(*(lst));
+			tmp->next = new;
+		}
+	}
+}
+
+	// if ((*lst) != NULL)
+	// {
+	// 	*lst = (*lst)->next;
+	// }
+	// (*lst)->next = new;

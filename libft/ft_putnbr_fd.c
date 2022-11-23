@@ -1,24 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:52:49 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/21 19:44:45 by cmeng            ###   ########.fr       */
+/*   Created: 2022/10/22 15:57:24 by cmeng             #+#    #+#             */
+/*   Updated: 2022/10/22 18:18:26 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+#include "libft.h"
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+	}
+	else
+	{
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			n = n * -1;
+		}
+		if (n > 9)
+		{
+			ft_putnbr_fd(n / 10, fd);
+		}
+		ft_putchar_fd((n % 10) + '0', fd);
+	}
+}
 
-#endif
+// int	main(void)
+// {
+// 	int	i;
+// 	i = 2147483647;
+
+// 	ft_putnbr_fd(i, 1);
+// 	return (0);
+// }

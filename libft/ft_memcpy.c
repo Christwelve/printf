@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:52:49 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/21 19:44:45 by cmeng            ###   ########.fr       */
+/*   Created: 2022/10/18 09:44:21 by cmeng             #+#    #+#             */
+/*   Updated: 2022/11/09 11:43:06 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+#include <stdio.h>
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned int	i;
 
-#endif
+	if (src == dst)
+		return (dst);
+	i = 0;
+	while (i < n)
+	{
+		((char *) dst)[i] = ((char *) src)[i];
+		i++;
+	}
+	return (dst);
+}
+
+// int main(void)
+// {
+// 	char src[20] = "Test";
+// 	char dst[20];
+// 	int n;
+
+// 	n = 2;
+// 	printf("%s", ft_memcpy(dst, src, n));
+// }

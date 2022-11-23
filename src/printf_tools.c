@@ -6,11 +6,11 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:30:06 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/15 16:48:53 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/21 09:48:02 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "../incl/ft_printf.h"
 
 int	ft_putchar(char c)
 {

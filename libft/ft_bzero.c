@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:52:49 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/21 19:44:45 by cmeng            ###   ########.fr       */
+/*   Created: 2022/10/13 10:24:58 by cmeng             #+#    #+#             */
+/*   Updated: 2022/10/25 09:54:32 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+#include <stdio.h>
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
+void	ft_bzero(void *s, size_t n)
+{
+	char	*ptr1;
 
-#endif
+	ptr1 = (char *) s;
+	while (n > 0)
+	{
+		*ptr1++ = '\0';
+		n--;
+	}
+}
+
+// int	main(void)
+// {
+// 	char	str1[] = "ABCDEFGH";
+// 	int	a;
+// 	a = 3;
+// 	ft_bzero(str1, a);
+// 	printf("%s", str1);
+// }

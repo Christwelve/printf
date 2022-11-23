@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:52:49 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/21 19:44:45 by cmeng            ###   ########.fr       */
+/*   Created: 2022/10/12 09:37:02 by cmeng             #+#    #+#             */
+/*   Updated: 2022/10/13 15:56:50 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+#include <stdio.h>
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char	*ptr1;
 
-#endif
+	ptr1 = (char *) b;
+	while (len > 0)
+	{
+		*ptr1++ = (unsigned char)c;
+		len--;
+	}
+	return (b);
+}
+
+// int main(void)
+// {
+// 	char	str1[] = "ABCDEFGH";
+// 	int	a;
+// 	a = 3;
+// 	printf("%s", ft_memset(str1, '2', a));
+// }

@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 13:52:49 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/21 19:44:45 by cmeng            ###   ########.fr       */
+/*   Created: 2022/10/13 11:06:09 by cmeng             #+#    #+#             */
+/*   Updated: 2022/10/19 13:25:33 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "../libft/libft.h"
-# include <stdarg.h>
-# include <unistd.h>
+#include <stdio.h>
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_putnbr(int n);
-int		ft_putstr(char *s);
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*ptr1;
 
-#endif
+	ptr1 = (unsigned char *) s;
+	while (n > 0)
+	{
+		if (*ptr1 != (unsigned char) c)
+		{
+			ptr1++;
+			n--;
+		}
+		else
+			return (ptr1);
+	}
+	return (0);
+}
+
+// int	main(void)
+// {
+// 	char	str1[] = "ABCDEFGH";
+// 	int	a;
+// 	a = 20;
+// 	printf("%s", ft_memchr(str1, 'E', a));
+// }
