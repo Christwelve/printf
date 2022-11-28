@@ -6,7 +6,7 @@
 #    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 07:53:40 by cmeng             #+#    #+#              #
-#    Updated: 2022/11/23 17:56:30 by cmeng            ###   ########.fr        #
+#    Updated: 2022/11/28 10:32:01 by cmeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ AR			=	ar -crs
 
 SRC_FILES	=	src/ft_printf.c \
 	 			src/printf_tools.c \
+				src/printf_hex.c \
 				src/main.c \
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
@@ -43,8 +44,8 @@ $(NAME): $(OBJ_FILES) 					#erstellt archiv (libary) aus allen .o files (wird in
 	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 test: $(OBJ_FILES) 						#.o file wird ausgeführt und test gestartet
-	$(CC) $(CFLAGS) $(INCLUDE) $(NAME) $(OBJ_FILES)
-	@echo "***test compiled!***"
+	$(CC) $(CFLAGS) $(INCLUDE) $(NAME) $(OBJ_FILES) && ./a.out 
+
 
 clean:									#remove .o files
 	$(RM) $(OBJ_FILES)

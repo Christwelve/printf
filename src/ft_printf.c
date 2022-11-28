@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:11:19 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/23 17:02:33 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/28 15:46:29 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,18 @@ int	format_specifier(char *format, va_list args)
 		len += ft_putstr(ft_itoa(va_arg(args, int)));
 	if (*format == 'i')
 		len += ft_putstr(ft_itoa(va_arg(args, int)));
-	if (*format == 'p')
-		// len += "ft_ptr"  function to print the pointer adress
 	if (*format == 'u')
-		len += ft_putstr(va_arg(args, char *));	//itoa base 10 unsigned
+		len += ft_putstr(va_arg(args, char *));
+	if (*format == 'p')
+	{
+		len += ft_putstr("0x");
+		len += ft_hex(va_arg(args, int));
+	}
 	if (*format == 'x')
-		len += ft_putstr(va_arg(args, char *));	//itoa base 16 lower x
+		len += ft_hex(va_arg(args, int));
 	if (*format == 'X')
-		len += ft_putstr(va_arg(args, char *));	//itoa base 16 upper x
+		len += ft_hex_upper(va_arg(args, int));
 	if (*format == '%')
 		len += ft_putchar('%');
 	return (len);
-
 }
