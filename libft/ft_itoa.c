@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:56:36 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/23 22:41:03 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/29 14:53:36 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	amount_characters(int n);
-
-char	*ft_itoa(int n)
-{
-	char	*output;
-	int		size;
-	int		negative;
-
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	size = amount_characters(n);
-	output = ft_calloc((size + 1), sizeof(char));
-	if (!output)
-		return (NULL);
-	negative = 0;
-	if (n < 0)
-	{
-		n *= (-1);
-		output[0] = '-';
-		size -= 1;
-		negative = 1;
-	}
-	while (size)
-	{
-		output[size - 1 + negative] = n % 10 + '0';
-		size--;
-		n = n / 10;
-	}
-	return (output);
-}
-
-int	amount_characters(int n)
+static int	ft_amount_characters(int n)
 {
 	int	i;
 
@@ -62,9 +31,31 @@ int	amount_characters(int n)
 	return (i);
 }
 
-// int	main(void)
-// {
-// 	int i = 3;
-// 	printf("output: %s\n", ft_itoa(i));
-// 	return (0);
-// }
+char	*ft_itoa(int n)
+{
+	char	*output;
+	int		size;
+	int		negative;
+
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	size = ft_amount_characters(n);
+	output = ft_calloc((size + 1), sizeof(char));
+	if (!output)
+		return (NULL);
+	negative = 0;
+	if (n < 0)
+	{
+		n *= (-1);
+		output[0] = '-';
+		size -= 1;
+		negative = 1;
+	}
+	while (size)
+	{
+		output[(size - 1) + negative] = n % 10 + '0';
+		size--;
+		n = n / 10;
+	}
+	return (output);
+}

@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:30:06 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/28 11:57:55 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/29 14:56:34 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,17 @@ int	ft_putchar(char c)
 	return (write(1, &c, 1));
 }
 
-int	ft_putstr(char *s)
+int	ft_putstr(char *s, int should_free)
 {
 	int	len;
 
 	len = 0;
 	if (s == NULL)
 		return (0);
-	while (*s != '\0')
-	{
-		len += write(1, s, 1);
-		s++;
-	}
+	len = ft_strlen(s);
+	write(1, s, len);
+	if (should_free)
+		free(s);
 	return (len);
 }
 
@@ -39,7 +38,7 @@ int	ft_putnbr(int n)
 	len = 0;
 	if (n == -2147483648)
 	{
-		len = ft_putstr("-2147483648");
+		len = ft_putstr("-2147483648", 0);
 	}
 	else
 	{
@@ -55,4 +54,39 @@ int	ft_putnbr(int n)
 		len += ft_putchar((n % 10) + '0');
 	}
 	return (len);
+}
+
+static int	ft_amount_characters_unsigned(unsigned int n)
+{
+	int	i;
+
+	i = 0;
+	if (n < 0)
+		i++;
+	if (n == 0)
+		i++;
+	while (n)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa_unsigned(unsigned int n)
+{
+	char	*output;
+	int		size;
+
+	size = ft_amount_characters_unsigned(n);
+	output = ft_calloc((size + 1), sizeof(char));
+	if (!output)
+		return (NULL);
+	while (size)
+	{
+		output[size - 1] = n % 10 + '0';
+		size--;
+		n = n / 10;
+	}
+	return (output);
 }

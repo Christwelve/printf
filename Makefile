@@ -6,7 +6,7 @@
 #    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 07:53:40 by cmeng             #+#    #+#              #
-#    Updated: 2022/11/28 10:32:01 by cmeng            ###   ########.fr        #
+#    Updated: 2022/11/29 17:54:42 by cmeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(NAME): $(OBJ_FILES) 					#erstellt archiv (libary) aus allen .o files (wird in
 	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
 test: $(OBJ_FILES) 						#.o file wird ausgeführt und test gestartet
-	$(CC) $(CFLAGS) $(INCLUDE) $(NAME) $(OBJ_FILES) && ./a.out 
+	$(CC) $(CFLAGS) $(INCLUDE) $(NAME) $(OBJ_FILES) && ./a.out
 
 
 clean:									#remove .o files
