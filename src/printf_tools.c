@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 10:30:06 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/29 14:56:34 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/29 18:37:44 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ int	ft_putstr(char *s, int should_free)
 {
 	int	len;
 
-	len = 0;
 	if (s == NULL)
-		return (0);
+		return (write(1, "(null)", 6));
 	len = ft_strlen(s);
 	write(1, s, len);
 	if (should_free)

@@ -6,7 +6,7 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:11:19 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/29 14:41:02 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/29 18:32:13 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	ft_printf(const char *format, ...)
 			res += format_specifier(format_cpy, args);
 			format_cpy++;
 		}
-		// res += format_specifier(format_cpy, args);
 	}
 	va_end(args);
 	return (res);
@@ -45,22 +44,13 @@ int	ft_printf(const char *format, ...)
 int	format_specifier(char *format, va_list args)
 {
 	int		len;
-	char	*str;
 
 	len = 0;
 	if (*format == 'c')
 		len += ft_putchar(va_arg(args, int ));
 	if (*format == 's')
-	{
-		str = va_arg(args, char *);
-		if (str == NULL)
-			len += ft_putstr("(null)", 0);
-		else
-			len += ft_putstr(str, 0);
-	}
-	if (*format == 'd')
-		len += ft_putstr(ft_itoa(va_arg(args, int)), 1);
-	if (*format == 'i')
+		len += ft_putstr(va_arg(args, char *), 0);
+	if (*format == 'd' || *format == 'i')
 		len += ft_putstr(ft_itoa(va_arg(args, int)), 1);
 	if (*format == 'u')
 		len += ft_putstr(ft_itoa_unsigned(va_arg(args, unsigned int)), 1);
