@@ -6,7 +6,7 @@
 #    By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/11 07:53:40 by cmeng             #+#    #+#              #
-#    Updated: 2022/11/29 17:54:42 by cmeng            ###   ########.fr        #
+#    Updated: 2022/11/30 11:47:49 by cmeng            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ AR			=	ar -crs
 SRC_FILES	=	src/ft_printf.c \
 	 			src/printf_tools.c \
 				src/printf_hex.c \
-				src/main.c \
 
 OBJ_FILES	=	$(SRC_FILES:.c=.o)
 
@@ -35,16 +34,15 @@ OBJ_FILES	=	$(SRC_FILES:.c=.o)
 
 $(NAME): $(OBJ_FILES) 					#erstellt archiv (libary) aus allen .o files (wird in libftprinft.a gespeichert)
 	make --silent -C $(LIBFT)
-	cp libft/libft.a .
-	mv libft.a $(NAME)
+	cp libft/libft.a $(NAME)
 	$(AR) $(NAME) $(OBJ_FILES)
 	@echo "*** ft_printf compiled!***"
 
 %.o: %.c 								#sucht passende .c file und compiliert .o file
 	$(CC) $(CFLAGS) $(INCLUDE) -c $^ -o $@
 
-test: $(OBJ_FILES) 						#.o file wird ausgeführt und test gestartet
-	$(CC) $(CFLAGS) $(INCLUDE) $(NAME) $(OBJ_FILES) && ./a.out
+test: $(OBJ_FILES) src/main.o						#.o file wird ausgeführt und test gestartet
+	$(CC) $(CFLAGS) $(INCLUDE) $(NAME) $(OBJ_FILES) src/main.o && ./a.out
 
 
 clean:									#remove .o files
