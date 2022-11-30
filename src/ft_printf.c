@@ -6,42 +6,40 @@
 /*   By: cmeng <cmeng@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:11:19 by cmeng             #+#    #+#             */
-/*   Updated: 2022/11/29 18:32:13 by cmeng            ###   ########.fr       */
+/*   Updated: 2022/11/30 11:28:07 by cmeng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ft_printf.h"
 
-int	format_specifier(char *format, va_list args);
+int	format_specifier(const char *format, va_list args);
 
 int	ft_printf(const char *format, ...)
 {
 	int		res;
-	char	*format_cpy;
 	va_list	args;
 
-	format_cpy = (char *)format;
 	res = 0;
 	va_start(args, format);
-	while (*format_cpy != '\0')
+	while (*format != '\0')
 	{
-		if (*format_cpy != '%')
+		if (*format != '%')
 		{
-			res += write (1, format_cpy, 1);
-			format_cpy++;
+			res += write (1, format, 1);
+			format++;
 		}
 		else
 		{
-			format_cpy++;
-			res += format_specifier(format_cpy, args);
-			format_cpy++;
+			format++;
+			res += format_specifier(format, args);
+			format++;
 		}
 	}
 	va_end(args);
 	return (res);
 }
 
-int	format_specifier(char *format, va_list args)
+int	format_specifier(const char *format, va_list args)
 {
 	int		len;
 
